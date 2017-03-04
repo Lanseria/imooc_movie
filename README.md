@@ -5,7 +5,7 @@
 本项目电影首页，可供参考:
 - <a href="https://github.com/Loogeek" target="\_blank">Loogeek</a>项目中将部分代码重写。
 - <a href="http://www.imooc.com/learn/197" target="\_blank">node建站攻略(二期)——网站升级</a>Scott讲师的课程进行了重写。
-
+- <a href="http://nodejsmovie.limonplayer.cn/" target="\_blank">超爱电影(临时)</a>测试页
 **1. 项目后端搭建:**
   * 使用`NodeJs的express`框架完成电影网站后端搭建;
   * 使用`mongodb`完成数据存储,通过`mongoose`模块完成对`mongodb`数据的构建;
