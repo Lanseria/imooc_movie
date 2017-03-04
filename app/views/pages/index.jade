@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			each cat in categories
+				.panel.panel-warning
+					.panel-heading
+						h3 #{cat.name} 
+							small 
+								a.btn.btn-danger.btn-xs(href="/results?cat=#{cat._id}&p=0") more
+					.panel-body
+						if cat.movies && cat.movies.length > 0
+							each item in cat.movies
+								.col-md-2
+									.thumbnail
+										a(href="/movie/#{item._id}")
+											if item.poster.indexOf('http') > -1
+												img(src="#{item.poster}", alt="#{item.title}")
+											else
+												img(src="/upload/#{item.poster}", alt="#{item.title}")
+										.caption
+											h5 #{item.title}
+											p: a.btn.btn-primary(href="/movie/#{item._id}", role="button") 观看预告片

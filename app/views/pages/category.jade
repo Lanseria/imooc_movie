@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			//-全部魔幻片灾难片青春片恐怖片动作片科幻片爱情片冒险片剧情片喜剧片战争片微电影
+			form.form-horizontal(method="post", action="/admin/category")
+				//-input(type="hidden", name="movie[_id]", value="#{movie._id}")
+				.form-group
+					label.col-sm-2.control-label(for="inputCategory") 电影分类
+					.col-sm-10
+						input#inputCategory.form-control(type="text", name="category[name]", value=category.name)
+				.form-group
+					.col-sm-offset-10.col-sm-2
+						button.btn.btn-default.btn-block(type="submit") 录入
+	
