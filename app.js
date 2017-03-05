@@ -1,22 +1,26 @@
-var express = require('express');
-var path = require('path');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-//var cookieSession = require('cookie-session');
-var serveStatic = require('serve-static');
-var session = require('express-session');
-var logger = require('morgan'); 
-var multipart = require('connect-multiparty');
-var mongoStore = require('connect-mongo')(session);
-var port = process.env.PORT || 3000;
-var app = express();
-var fs = require('fs');
-var dbUrl = 'mongodb://localhost/imooc';
+var multipart = require('connect-multiparty'),
+	cookieParser = require('cookie-parser'),
+	serveStatic = require('serve-static'),
+	session = require('express-session'),
+	bodyParser = require('body-parser'),
+	mongoose = require('mongoose'),
+	express = require('express'),
+	logger = require('morgan'),
+	path = require('path'),
+	fs = require('fs');
+
+var mongoStore = require('connect-mongo')(session),
+	port = process.env.PORT || 3000,
+	app = express(),
+	dbUrl = 'mongodb://localhost/imooc',
+	models_path = __dirname + '/app/models';
+	
+app.locals.moment = require('moment'),
+
 mongoose.connect(dbUrl);
 
 //models loading
-var models_path = __dirname + '/app/models';
+
 var walk = function(path){
 	fs.readdirSync(path).forEach(function(file){
 		var newPath = path+'/'+file;
@@ -48,6 +52,7 @@ app.use(session({
   })
 }));
 var env = process.env.NODE_ENV || 'development';
+
 if('development' === env){
 	app.set('showStackError', true);
 	app.use(logger(':method :url :status'));
@@ -57,6 +62,5 @@ if('development' === env){
 require('./config/routes')(app);
 
 app.listen(port);
-app.locals.moment = require('moment');
 
 console.log('imooc started on port '+port);
